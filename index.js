@@ -8,6 +8,7 @@
     import flash from 'connect-flash'
     import { fileURLToPath } from 'url'
     import * as User from './routes/UserRouter.js'
+    import * as Car from './routes/CarRouter.js'
 
 //Config
     const app = express()
@@ -44,6 +45,7 @@
 
     //Routes
         app.use('/user',User.router)
+        app.use('/car',Car.router)
         
     app.listen(PORT||3000,()=>{
         console.log(`Ouvindo em localhost:${PORT}`)

@@ -2,7 +2,7 @@
     import * as db from './conn.js'
 
 //Tabela de carros
-    const User = db.sequelize.define('car',{
+    const User = db.sequelize.define('user',{
         nome:{type:db.Sequelize.STRING,allowNull:false},
         email:{type:db.Sequelize.STRING,allowNull:false},
         celular:{type:db.Sequelize.STRING,allowNull:false},

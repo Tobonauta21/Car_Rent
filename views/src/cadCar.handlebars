@@ -1,0 +1,20 @@
+<h1>Cadastre-se</h1>
+    <form action="/user/register" method="post">
+        <input type="text" placeholder="Modelo:" name="modelo">
+        <input type="text" placeholder="Placa:" name="placa">
+        <input type="text" placeholder="Cor:" name="cor" id="cor">
+        <input type="text" id="valor" placeholder="R$ 0,00" onkeyup="mascaraDinheiro(this)">
+        <input type="text" placeholder="Quantidade:" name="qtd" id="qtd">
+        <input type="submit" value="Enviar">
+    </form>
+
+<script type="text/javascript">
+    function mascaraDinheiro(campo) {
+            let valor = campo.value
+            valor = valor.replace(/\D/g, "")
+            valor = (valor / 100).toFixed(2) + ""
+            valor = valor.replace(".", ",")
+            valor = "R$ " + valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+            campo.value = valor
+        }
+</script>

@@ -1,0 +1,23 @@
+.error_msg{
+    background-color: #DD0C15;
+    color: white;
+    text-align: center;
+    height: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.success_msg {
+    background-color: #288909;
+    color: white;
+    text-align: center;
+    height: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}

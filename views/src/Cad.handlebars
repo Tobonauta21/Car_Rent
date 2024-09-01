@@ -4,8 +4,9 @@
     <input type="text" placeholder="Email:" name="email">
     <input type="text" placeholder="Celular:" name="celular" id="celular">
     <input type="text" placeholder="CEP:" name="cep" id="cep">
-    <input type="text" placeholder="Rua:" name="rua">
-    <input type="text" placeholder="Bairro:" name="bairro">
+    <input type="text" placeholder="Rua:" name="rua" id="rua">
+    <input type="text" placeholder="Bairro:" name="bairro" id="bairro">
+    <input type="text" placeholder="Cidade:" name="cidade" id="cidade">
     <input type="text" placeholder="Nº:" name="num">
     <input type="text" placeholder="CPF:" name="cpf" id="cpf">
     <input type="text" placeholder="RG:" name="rg" id="rg">
@@ -17,4 +18,41 @@
     $("#cep").mask("00000-000");
     $("#cpf").mask("000.000.000/00");
     $("#rg").mask("00.000.000-0");
+</script>
+
+<script>
+
+function preenche(dados) {
+    document.getElementById('rua').value = dados.logradouro
+    document.getElementById('bairro').value = dados.bairro
+    document.getElementById('cidade').value = dados.localidade
+}
+
+const cepInvalido = (req,res)=>{
+    return req.flash('error_msg','CEP inválido'),res.redirect('/user/cad')
+}
+
+
+const pesquisaCep = async () => {
+    const cep = document.getElementById('cep').value
+    const cepConsult = `https://viacep.com.br/ws/${cep}/json/`
+
+    try {
+        const response = await fetch(cepConsult)
+        const endereco = await response.json()
+        if(endereco.cidade ===undefined){
+            document.getElementById('rua').value = 'Erro ao fazer consulta'
+            document.getElementById('bairro').value = 'Erro ao fazer consulta'
+    document.getElementById('cidade').value = 'Erro ao fazer consulta'
+        }else{
+            preenche(endereco)
+        }
+        
+    } catch (error) {
+        console.error('Erro ao consultar o CEP:', error)
+    }
+}
+
+
+document.getElementById('cep').addEventListener('focusout', pesquisaCep)
 </script>
